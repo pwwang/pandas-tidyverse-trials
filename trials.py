@@ -42,7 +42,7 @@ if __name__ == '__main__':
         trials = json.load(jsonfile)
 
     for x in ['times', 'profiles']:
-        Path(f'results/{x}').mkdir(parents=True)
+        Path(f'results/{x}').mkdir(parents=True, exist_ok=True)
 
     for trial, command in tqdm(trials.items()):
         print(trial)
