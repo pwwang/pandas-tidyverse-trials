@@ -1,0 +1,10 @@
+{
+    "sorting": "e = d >> arrange(*[f[c] for c in d.columns])",
+    "filtering": "e = d >> filter(f.d <.5, (f.e  > .5) | (f.f > .5))",
+    "mutation": "e = d >> mutate(across(everything(), np.round))",
+    "grouping": "e = d >> group_by(*[f[c] for c in d.columns[:3]])",
+    "summarizing": "e = d >> summarise(across(everything(), np.mean))",
+    "group-summarizing": "e = d >> group_by(*[f[c] for c in d.columns[:3]]) >> summarise(across(c(everything(), -f[f.a:f.c]), np.mean))",
+    "wide-to-long": "e = d >> pivot_longer(cols=everything())",
+    "long-to-wide": "e = d_long >> pivot_wider(names_from=f.name, values_from=f.value)"
+}
