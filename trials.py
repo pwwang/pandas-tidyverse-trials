@@ -41,6 +41,9 @@ if __name__ == '__main__':
     with Path(f'commands/commands-{pkg}.json').open('r') as jsonfile:
         trials = json.load(jsonfile)
 
+    for x in ['times', 'profiles']:
+        Path(f'results/{x}').mkdir(parents=True)
+
     for trial, command in tqdm(trials.items()):
         print(trial)
         cProfile.run(command, filename=f'results/profiles/{pkg}-{trial}-profile')
