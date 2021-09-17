@@ -4,7 +4,8 @@
     "mutation": "e = mutate(d, **{c: func(c) for c, func in zip(d.columns, [lambda c: _[c].round()] * d.shape[1])})",
     "grouping": "e = group_by(d, _.a, _.b, _.c)",
     "summarizing": "e = summarize(d, **{c: np.mean(_[c]) for c, func in zip(d.columns, [np.mean] * d.shape[1])})",
-    "group-summarizing": "e = group_by(d, _.a, _.b, _.c) >> summarize(**{c: np.mean(_[c]) for c, func in zip(d.columns[3:], [np.mean] * (d.shape[1] - 3))})",
+    "group-summarizing": "e = group_by(d, _.a, _.b, _.c) >> summarize(**{c: func(_[c]) for c, func in zip(d.columns[3:], [np.mean] * (d.shape[1] - 3))})",
+    "group-mutation": "e = group_by(d, _.a, _.b, _.c) >> mutate(**{c: func(_[c]) for c, func in zip(d.columns[3:], [lambda x: x - np.mean(x)] * (d.shape[1] - 3))}) >> ungroup()",
     "wide-to-long": "e = gather(d, 'name', 'value', _[:])",
     "long-to-wide": "e = spread(d_long, 'name', 'value')"
 }

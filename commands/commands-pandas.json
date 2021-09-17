@@ -5,6 +5,7 @@
     "grouping": "e = d.groupby(list(d.columns)[:3])",
     "summarizing": "e = d.agg({c: funs for c, funs in zip(d.columns, [np.mean] * d.shape[1])}).reset_index().transpose().iloc[[1], :].rename(columns={i: x for i, x in enumerate(d.columns)})",
     "group-summarizing": "e = d.groupby(list(d.columns)[:3]).agg({c: funs for c, funs in zip(d.columns[3:], [np.mean] * (d.shape[1] - 3) )}).reset_index().transpose().iloc[[1], :].rename(columns={i: x for i, x in enumerate(d.columns)})",
+    "group-mutation2": "e = pd.concat((d[list(d.columns[:3])], d.groupby(list(d.columns)[:3]).transform(lambda x: x - np.mean(x))[d.columns[3:]]), axis=1)",
     "wide-to-long": "e = d.melt(var_name='name')",
     "long-to-wide": "e = d_long.pivot(index='idx', columns='name').reset_index()"
 }

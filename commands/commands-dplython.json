@@ -5,6 +5,7 @@
     "grouping": "e = group_by(d, *[X[c] for c in d.columns][:3])",
     "summarizing": "e = summarize(d, **{c: func(X[c]) for c, func in zip(d.columns, [np.mean] * d.shape[1])})",
     "group-summarizing": "e = group_by(d, *[X[c] for c in d.columns][:3]) >> summarize(**{c: func(X[c]) for c, func in zip(d.columns[3:], [np.mean] * (d.shape[1] -3))})",
+    "group-mutation": "e = group_by(d, *[X[c] for c in d.columns][:3]) >> mutate(**dict(d=X['d'] - np.mean(X['d']), e=X['e'] - np.mean(X['e']), f=X['f'] - np.mean(X['f']), g=X['g'] - np.mean(X['g']), h=X['h'] - np.mean(X['h']), i=X['i'] - np.mean(X['i']), j=X['j'] - np.mean(X['j'])))",
     "wide-to-long": "e = d.melt(var_name='name')",
     "long-to-wide": "e = d_long.pivot(index='idx', columns='name').reset_index()"
 }

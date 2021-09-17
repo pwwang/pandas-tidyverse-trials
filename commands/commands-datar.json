@@ -4,7 +4,8 @@
     "mutation": "e = d >> mutate(across(everything(), np.round))",
     "grouping": "e = d >> group_by(*[f[c] for c in d.columns[:3]])",
     "summarizing": "e = d >> summarise(across(everything(), np.mean))",
-    "group-summarizing": "e = d >> group_by(*[f[c] for c in d.columns[:3]]) >> summarise(across(c(everything(), -f[f.a:f.c]), np.mean))",
+    "group-summarizing": "e = d >> group_by(*[f[c] for c in d.columns[:3]]) >> summarise(across(everything(), np.mean))",
+    "group-mutation": "e = pd.concat((d[list(d.columns[:3])], d.groupby(list(d.columns)[:3]).transform(lambda x: x - np.mean(x))[d.columns[3:]]), axis=1)",
     "wide-to-long": "e = d >> pivot_longer(cols=everything())",
     "long-to-wide": "e = d_long >> pivot_wider(names_from=f.name, values_from=f.value)"
 }
