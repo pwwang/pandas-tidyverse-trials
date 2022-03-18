@@ -1,0 +1,11 @@
+{
+    "sorting": "e <- d %>% arrange(everything())",
+    "filtering": "e <- d %>% filter(d <.5, (e  > .5) | (f > .5))",
+    "mutation": "e <- d %>% mutate(d, across(everything(), round))",
+    "grouping": "e <- d %>% group_by(a, b, c)",
+    "summarizing": "e <- d %>% summarize(across(everything(), mean))",
+    "group-summarizing": "e <- d %>% group_by(a, b, c) %>% summarize(across(everything(), mean). .groups = 'drop')",
+    "group-mutation": "e <- d %>% group_by(a, b, c) %>% mutate(across(everything(), mean)) %>% ungroup",
+    "wide-to-long": "e <- d %>% pivot_longer(everything())",
+    "long-to-wide": "e <- d_long %>% pivot_wider(idx, names_from = name, values_from = value)"
+}
